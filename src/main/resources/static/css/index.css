@@ -1,0 +1,44 @@
+.hidden {
+    display: none;
+}
+
+.show {
+    display: inline;
+}
+
+.max-height {
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.btn-menu {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.list-style-none{
+    list-style: none;
+}
+
+.avt-dropdown {
+    left: -50px !important;
+}
+
+.scroll{
+    max-height: 90vh;
+    overflow-y: scroll;
+}
