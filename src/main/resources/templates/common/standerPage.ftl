@@ -10,6 +10,7 @@
                 integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="/js/common.js"></script>
+        <script src="/js/employee.js"></script>
         <script src="/js/bootstrap.bundle.js "></script>
         <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/css/index.css">
@@ -157,11 +158,23 @@
                 </div>
             </div>
             <div class="px-5 py-3 scroll">
-            <#nested />
+                <#nested />
             </div>
         </div>
     </div>
     </body>
     </html>
+</#macro>
+<#macro headerView
+to=""
+searchUrl = ""
+>
+    <form action="${searchUrl}" class=" mb-3 d-flex justify-content-between align-center align-items-center ">
+        <a href="${to}" class="btn btn-primary" >New</a>
+        <div class="d-flex align-items-center ">
+            <input type="text" class="form-control" placeholder="Search">
+            <span><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+    </form>
 </#macro>
 

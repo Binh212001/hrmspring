@@ -20,6 +20,11 @@ public class Employee {
     private String phone;
     private String address;
     private Date hireDate;
+    private String university;
+    private String vehicleName;
+    private String vehicleNo;
+    private double gpa;
+    private String graduation;
 
     @ManyToOne
     @JoinColumn(name = "departmentId")

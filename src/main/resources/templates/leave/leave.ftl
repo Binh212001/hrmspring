@@ -2,6 +2,10 @@
 
 <@standerPage.Layout>
     <h3>My Leave</h3>
+    <@standerPage.headerView
+    to="/leave/create"
+    searchUrl="/leave/search"
+    ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
