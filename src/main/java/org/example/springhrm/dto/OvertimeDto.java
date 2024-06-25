@@ -3,6 +3,7 @@ package org.example.springhrm.dto;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -14,5 +15,7 @@ public class OvertimeDto implements Serializable {
     Date date;
     Integer hours;
     String reason;
+    private Time startTime;
+    private  Time endTime;
     EmployeeDto employee;
 }

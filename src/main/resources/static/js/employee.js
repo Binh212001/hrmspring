@@ -11,7 +11,8 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(employeeForm),
             success: function(response) {
-                console.log(response);
+                // $.toast(response.message)
+                window.location.href = "http://localhost:8080/employee";
             },
             error: function(xhr, status, error) {
                 console.error("Error: " + status + " " + error.getMessage());

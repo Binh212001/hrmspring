@@ -24,7 +24,7 @@ public class EmployeeForm implements Serializable {
     private double gpa;
     private String graduation;
     private Date hireDate;
-    private String id;
+    private Long id;
     private String lastName;
     private String password;
     private String phone;

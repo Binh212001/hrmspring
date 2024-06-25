@@ -33,12 +33,50 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Department> department = departmentRepository.findById(employeeForm.getDepartmentId());
         Optional<Position> position = positionRepository.findById(employeeForm.getPositionId());
         if (!department.isEmpty()) {
-          newEmployee.setDepartment(department.get());
+            newEmployee.setDepartment(department.get());
         }
         if (!position.isEmpty()) {
-          newEmployee.setPosition(position.get());
+            newEmployee.setPosition(position.get());
         }
         employeeRepository.save(newEmployee);
         return new Response("Employee is saved successfully.", true);
+    }
+
+    @Override
+    public Response edit(EmployeeForm employeeForm) {
+        Optional<Employee> employee = employeeRepository.findById(employeeForm.getId());
+        if (employee.isEmpty()) {
+            return new Response("Cannot find employee", false);
+        }
+        employee.get().setAddress(employeeForm.getAddress());
+        employee.get().setDateOfBirth(employeeForm.getDateOfBirth());
+        employee.get().setEmail(employeeForm.getEmail());
+        employee.get().setFirstName(employeeForm.getFirstName());
+        employee.get().setGender(employeeForm.getGender());
+        employee.get().setGpa(employeeForm.getGpa());
+        employee.get().setGraduation(employeeForm.getGraduation());
+        employee.get().setHireDate(employeeForm.getHireDate());
+        employee.get().setLastName(employeeForm.getLastName());
+        employee.get().setPassword(employeeForm.getPassword());
+        employee.get().setPhone(employeeForm.getPhone());
+        employee.get().setUniversity(employeeForm.getUniversity());
+        employee.get().setVehicleName(employeeForm.getVehicleName());
+        employee.get().setVehicleNo(employeeForm.getVehicleNo());
+        Optional<Department> department = departmentRepository.findById(employeeForm.getDepartmentId());
+        Optional<Position> position = positionRepository.findById(employeeForm.getPositionId());
+        if (!department.isEmpty()) {
+            employee.get().setDepartment(department.get());
+        }
+        if (!position.isEmpty()) {
+            employee.get().setPosition(position.get());
+        }
+        employeeRepository.save(employee.get());
+        return new Response("Employee is updated successfully", true);
+    }
+
+    @Override
+    public List<Employee> findEmpByLevel() {
+       List<Employee> employees = employeeRepository.findAll();
+       return employees;
     }
 }

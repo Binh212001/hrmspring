@@ -52,4 +52,10 @@ public class EmployeeController {
         Response created = employeeService.save(employeeForm);
         return ResponseEntity.ok(created);
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Response> edit(@RequestBody EmployeeForm employeeForm) {
+        Response edited = employeeService.edit(employeeForm);
+        return ResponseEntity.ok(edited);
+    }
 }
