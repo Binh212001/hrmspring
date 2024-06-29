@@ -20,4 +20,10 @@ public class Overtime {
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
+    @Enumerated(EnumType.STRING)
+    private  Status status; // Example: Draft, Approved,  Rejected
+    @PrePersist
+    protected  void onCreate() throws Exception {
+        this.status = Status.DRAFT;
+    }
 }

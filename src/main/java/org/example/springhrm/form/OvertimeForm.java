@@ -3,6 +3,7 @@ package org.example.springhrm.form;
 import lombok.Value;
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Overtime;
+import org.example.springhrm.utils.TimeConvert;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -26,15 +27,11 @@ public class OvertimeForm implements Serializable {
         Overtime overtime = new Overtime();
         overtime.setDate(date);
         overtime.setReason(reason);
-        String[] startTimeList = startTime.split(":");
-        String[] endTimeList = endTime.split(":");
-        Time startTimeOt = new Time(Integer.parseInt(startTimeList[0]), Integer.parseInt(startTimeList[1]), 0);
-        Time endTimeOt = new Time(Integer.parseInt(endTimeList[0]), Integer.parseInt(endTimeList[1]), 0);
+        Time startTimeOt = TimeConvert.StringToTime(startTime);
+        Time endTimeOt =  TimeConvert.StringToTime(endTime);
         overtime.setStartTime(startTimeOt);
         overtime.setEndTime(endTimeOt);
-        Integer hours = Math.abs(Integer.parseInt(endTimeList[0]) - Integer.parseInt(startTimeList[0]));
-        Integer minutes = Math.abs(Integer.parseInt(endTimeList[1]) - Integer.parseInt(startTimeList[1]));
-        Float durationRealTime = Float.valueOf(hours + (float) minutes / 60);
+        Float durationRealTime = TimeConvert.computeDuration(startTime,endTime);
         overtime.setDuration(durationRealTime);
         overtime.setEmployee(employee);
         return overtime;

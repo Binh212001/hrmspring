@@ -1,5 +1,4 @@
 <#import "../common/standerPage.ftl" as standerPage>
-
 <@standerPage.Layout>
     <table class="table table-bordered">
         <thead class="thead-dark">

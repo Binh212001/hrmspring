@@ -1,9 +1,8 @@
 <#import "../common/standerPage.ftl" as standerPage>
-
 <@standerPage.Layout>
     <h3>My Overtime</h3>
     <@standerPage.headerView
-    to="/overtime/create"
+    to="${newOvertime}"
     searchUrl="/overtime/search"
     ></@standerPage.headerView>
     <table class="table table-bordered">

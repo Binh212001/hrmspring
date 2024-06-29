@@ -29,13 +29,16 @@ public class OvertimeController {
     EmployeeService employeeService;
 
     @GetMapping(value = {"/", ""})
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("newOvertime", HRMConstant.NEW_OVERTIME);
         return "overtime/overtime";
     }
 
-    @GetMapping(value = {"/create-edit", "/create-edit/"})
+    @GetMapping(value = {"/create-edit"})
     public String createOrEdit(@RequestParam("mode") String mode, Model model, @RequestParam("id") Long id) {
+        List<Employee> employees =  employeeService.findEmpByLevel();
         model.addAttribute("mode", mode);
+        model.addAttribute("employee", employees);
         if (HRMConstant.MODE_CREATE.equals(mode)) {
             return HRMConstant.OT_CREATE_EDIT;
         }
@@ -43,7 +46,6 @@ public class OvertimeController {
         if (overtime.isEmpty()) {
             return HRMConstant.OT_LIST;
         }
-        List<Employee> emps =  employeeService.findEmpByLevel();
         model.addAttribute("overtime", overtime.get());
         return HRMConstant.OT_CREATE_EDIT;
     }
@@ -56,7 +58,7 @@ public class OvertimeController {
 
     @PutMapping("/edit")
     public ResponseEntity<Response> edit(@RequestBody OvertimeForm form) {
-        Response edited = overtimeService.edit(form);
+            Response edited = overtimeService.edit(form);
         return ResponseEntity.ok(edited);
     }
 }

@@ -13,9 +13,14 @@ public class Leave {
     private Long leaveId;
     private Date date;
     private String type; // Example: Annual, Sick, Unpaid, etc.
-    private String status; // Example: Approved, Pending, Rejected
     private String reason;
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
+    @Enumerated(EnumType.STRING)
+    private  Status status; // Example: Draft, Approved,  Rejected
+    @PrePersist
+    protected  void onCreate() throws Exception {
+     this.status = Status.DRAFT;
+    }
 }

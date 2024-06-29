@@ -12,6 +12,7 @@
         <script src="/js/common.js"></script>
         <script src="/js/employee.js"></script>
         <script src="/js/overtime.js"></script>
+        <script src="/js/leave.js"></script>
         <script src="/js/bootstrap.bundle.js "></script>
         <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/css/index.css">
@@ -171,7 +172,7 @@ to=""
 searchUrl = ""
 >
     <form action="${searchUrl}" class=" mb-3 d-flex justify-content-between align-center align-items-center ">
-        <a href="${to}" class="btn btn-primary" >New</a>
+        <a href="${to}" class="btn btn-primary">New</a>
         <div class="d-flex align-items-center ">
             <input type="text" class="form-control" placeholder="Search">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>

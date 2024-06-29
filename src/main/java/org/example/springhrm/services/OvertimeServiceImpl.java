@@ -6,9 +6,11 @@ import org.example.springhrm.form.OvertimeForm;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.OvertimeRepository;
 import org.example.springhrm.utils.Response;
+import org.example.springhrm.utils.TimeConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.Optional;
 
 @Service
@@ -48,7 +50,12 @@ public class OvertimeServiceImpl implements OvertimeService {
             overtime.get().setDate(form.getDate());
             overtime.get().setReason(form.getReason());
             overtime.get().setReason(form.getReason());
-
+            Time startTimeOt = TimeConvert.StringToTime(form.getStartTime());
+            Time endTimeOt =  TimeConvert.StringToTime(form.getEndTime());
+            Float durationRealTime = TimeConvert.computeDuration(form.getStartTime(),form.getEndTime());
+            overtime.get().setDuration(durationRealTime);
+            overtime.get().setStartTime(startTimeOt);
+            overtime.get().setEndTime(endTimeOt);
             overtimeRepository.save(overtime.get());
             return new Response("Overtime is updated successfully", true);
         } catch (Exception e) {

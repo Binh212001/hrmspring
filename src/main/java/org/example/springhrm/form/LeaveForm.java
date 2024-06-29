@@ -1,6 +1,8 @@
 package org.example.springhrm.form;
 
 import lombok.Value;
+import org.example.springhrm.entity.Employee;
+import org.example.springhrm.entity.Leave;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,10 +13,17 @@ import java.util.Date;
 @Value
 public class LeaveForm implements Serializable {
     Long leaveId;
-    Date startDate;
-    Date endDate;
+    Long employeeId;
     String type;
     String status;
     String reason;
-    EmployeeForm employee;
+    Date date;
+    public Leave mapToEty(Employee employee) {
+        Leave leave = new Leave();
+        leave.setEmployee(employee);
+        leave.setDate(date);
+        leave.setReason(reason);
+        leave.setType(type);
+        return leave;
+    }
 }
