@@ -9,23 +9,22 @@
             Pham Ngoc Binh Information
         </#if>
     </h2>
-
+    <input id="mode" value="${mode}" hidden/>
     <form id="employeeForm" class="row">
         <div class="col-12">
-            <#if mode == "0">
+            <#if mode == "0" || mode=="1">
                 <button type="button" id="saveEmployee" class="btn btn-primary">Save</button>
             <#else>
                 <button type="button" id="editEmployee" class="btn btn-primary">Edit</button>
             </#if>
         </div>
         <#if mode == "2">
-        <div class="form-group col-12 ">
-            <img src="${employee.university}"/>
-            <input type="file" class="form-control" id="id" name="id"/>
-        </div>
+            <div class="form-group col-12 ">
+                <img src="${employee.university}"/>
+            </div>
         </#if>
         <div class="form-group col-6 <#if mode != "1">hidden</#if> ">
-            <label for="id">EmployeeID</label>
+            <label for="id">EmployeeID </label>
             <input type="number" class="form-control" id="id" name="id" disabled
                     <#if mode  == "1" || mode=="2">  value="${employee.employeeId}"</#if>
             >
@@ -34,7 +33,7 @@
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" required
                     <#if mode  == "1" || mode=="2">  value="${employee.email}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6  <#if mode  != "0"  >hidden</#if>">
             <label for="password">Password</label>
@@ -46,19 +45,19 @@
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName" name="firstName" required
                     <#if mode  == "1" || mode=="2">  value="${employee.firstName}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" id="lastName" name="lastName" required
                     <#if mode  == "1" || mode=="2">  value="${employee.lastName}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="dateOfBirth">Date of Birth</label>
             <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required
                    <#if mode == "1" || mode=="2">value="${employee.dateOfBirth?string('yyyy-MM-dd')}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="gender">Gender</label>
@@ -73,19 +72,19 @@
             <label for="phone">Phone</label>
             <input type="text" class="form-control" id="phone" name="phone" required
                     <#if mode  == "1" || mode=="2">  value="${employee.phone}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="address">Address</label>
             <input type="text" class="form-control" id="address" name="address" required
                     <#if mode  == "1" || mode=="2">  value="${employee.address}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="hireDate">Hire Date</label>
             <input type="date" class="form-control" id="hireDate" name="hireDate" required
                    <#if mode == "1"|| mode=="2">value="${employee.hireDate?string('yyyy-MM-dd')}"</#if>
-                   <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#if mode != "0" && mode != "1"  >disabled</#if>>
         </div>
         <div class="form-group col-6">
             <label for="departmentId">Department</label>
@@ -117,7 +116,7 @@
                 <label for="university">University</label>
                 <input class="form-control" id="university" name="university" required
                         <#if mode  == "1" || mode=="2">  value="${employee.university}"</#if>
-                       <#if mode != "0" && mode != "1"  >disabled</#if>>
+                        <#if mode != "0" && mode != "1"  >disabled</#if>>
             </div>
             <div class="form-group col-6">
                 <label for="graduation">Year of Graduation</label>

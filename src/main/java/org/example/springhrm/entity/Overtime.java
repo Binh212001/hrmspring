@@ -13,10 +13,10 @@ public class Overtime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long overtimeId;
     private Date date;
-    private Integer duration;
+    private Float duration;
     private String reason;
     private Time startTime;
-    private  Time endTime;
+    private Time endTime;
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;

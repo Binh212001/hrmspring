@@ -6,9 +6,10 @@ $(document).ready(function () {
         overtimeSerialize.map(function (data) {
             overtimeForm[data.name] = data.value
         })
+        console.log(overtimeForm)
         $.ajax({
-            url: mode === "0" ? "/overtime/save" : "/overtime/edit",
-            type: mode === "0" ? "POST" : "PUT",
+            url: mode == "0" ? "/overtime/save" : "/overtime/edit",
+            type: mode == "0" ? "POST" : "PUT",
             contentType: "application/json",
             data: JSON.stringify(overtimeForm),
             success: function (response) {
@@ -17,7 +18,7 @@ $(document).ready(function () {
                 window.location.href = `${origin}/overtime`
             },
             error: function (xhr, status, error) {
-                console.error("Error: " + status + " " + error.getMessage());
+                console.error("Error: " + status );
             }
         });
     })

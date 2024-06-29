@@ -7,7 +7,7 @@
             <#if mode == "0"> Save<#else>Edit</#if>
         </button>
     </div>
-    <input id="mode" value="mode" hidden />
+    <input id="mode" value="${mode}" hidden />
     <form id="overtimeForm" class="row">
         <div class="form-group col-6">
             <label for="employeeId">Employee</label>

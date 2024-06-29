@@ -1,2 +1,8 @@
-package org.example.springhrm.utils;public class TimeConvert {
+package org.example.springhrm.utils;
+
+public class TimeConvert {
+ 
+
 }
+
+
