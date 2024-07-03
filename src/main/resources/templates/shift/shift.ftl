@@ -11,17 +11,28 @@
                 Month
             </th>
             <th scope="col">
+                Year
+            </th>
+            <th scope="col">
                 Status
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Work shift of Pham Ngoc Binh</td>
-            <td>6</td>
-            <td>Approved</td>
-        </tr>
+        <#list  attendances as attend>
+            <tr>
+                <th scope="row">${attend.attendanceId!""}</th>
+                <td>Attendance of ${attend.employee.fullName} on ${attend.month!""}/${attend.year!""} </td>
+                <td>${attend.month!""}</td>
+                <td>${attend.year!""}</td>
+                <td class="text-center">
+                <span class="badge <#if attend.status?? && attend.status == "APPROVED">text-bg-success<#else>text-bg-secondary</#if>">
+                    ${attend.status!"DRAFT"}
+                </span>
+                </td>
+
+            </tr>
+        </#list>
         </tbody>
     </table>
     <nav aria-label="Page navigation example">

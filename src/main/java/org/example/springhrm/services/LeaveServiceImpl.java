@@ -2,7 +2,6 @@ package org.example.springhrm.services;
 
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Leave;
-import org.example.springhrm.entity.Overtime;
 import org.example.springhrm.form.LeaveForm;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.LeaveRepository;
@@ -40,6 +39,19 @@ public class LeaveServiceImpl implements LeaveService{
 
     @Override
     public Response edit(LeaveForm form) {
-        return null;
+       Optional<Leave> leave = leaveRepository.findById(form.getLeaveId());
+        Optional<Employee> employee = employeeRepository.findById(form.getEmployeeId());
+        if (employee.isEmpty()) {
+            return new Response("Cannot find employee", false);
+        }
+        if (leave.isEmpty()) {
+            return new Response("Cannot find leave", false);
+        }
+        leave.get().setReason(form.getReason());
+        leave.get().setEmployee(employee.get());
+        leave.get().setType(form.getType());
+        leave.get().setDate(form.getDate());
+        leaveRepository.save(leave.get());
+        return new Response("Leave is updated successfully", true);
     }
 }

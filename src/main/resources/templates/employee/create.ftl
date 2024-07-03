@@ -5,7 +5,7 @@
             New Employee
         <#elseif mode == "1">
             Update Employee
-        <#else>
+
             Pham Ngoc Binh Information
         </#if>
     </h2>
@@ -89,62 +89,67 @@
         <div class="form-group col-6">
             <label for="departmentId">Department</label>
             <select class="form-control" id="departmentId" name="departmentId"
+                    <#if employee.department?? && mode == "1" >value="${employee.department.departmentId!""}"</#if>
                     <#if mode != "0" && mode != "1"  >disabled</#if>>
-                <option value="1">IT</option>
-                <option value="2">HR</option>
+                <#list departments as department>
+                    <option value="${department.departmentId!""}">${department.departmentName!""}</option>
+                </#list>
             </select>
         </div>
         <div class="form-group col-6">
-            <label for="positionId">Position</label>
-            <select class="form-control" id="positionId" name="positionId"
-                    <#if mode != "0" && mode != "1"  >disabled</#if>>
-                <option value="1">IT</option>
-                <option value="2">HR</option>
-            </select>
-        </div>
-        <ul class="nav nav-tabs col-12" id="tabList">
-            <li class="nav-item" id="edu-tab">
-                <a class="nav-link active">Education information</a>
-            </li>
-            <li class="nav-item" id="other-tab">
-                <a class="nav-link">Orther Infomation</a>
-            </li>
-        </ul>
+            <div class="form-group col-6">
+                <label for="positionId">Position</label>
+                <select class="form-control" id="positionId" name="positionId"
+                        <#if employee.position?? && mode == "1"  >value="${employee.position.positionId!""}"</#if>
+                        <#if mode != "0" && mode != "1"  >disabled</#if>>
+                    <#list positions as position>
+                        <option value="${position.positionId}">${position.positionName}</option>
+                    </#list>
+                </select>
+            </div>
+            <ul class="nav nav-tabs col-12" id="tabList">
+                <li class="nav-item" id="edu-tab">
+                    <a class="nav-link active">Education information</a>
+                </li>
+                <li class="nav-item" id="other-tab">
+                    <a class="nav-link">Orther Infomation</a>
+                </li>
+            </ul>
 
-        <div id="edu-tab-info" class="col-12">
-            <div class="form-group col-6">
-                <label for="university">University</label>
-                <input class="form-control" id="university" name="university" required
-                        <#if mode  == "1" || mode=="2">  value="${employee.university}"</#if>
-                        <#if mode != "0" && mode != "1"  >disabled</#if>>
+            <div id="edu-tab-info" class="col-12">
+                <div class="form-group col-6">
+                    <label for="university">University</label>
+                    <input class="form-control" id="university" name="university" required
+                            <#if mode  == "1" || mode=="2">  value="${employee.university}"</#if>
+                            <#if mode != "0" && mode != "1"  >disabled</#if>>
+                </div>
+                <div class="form-group col-6">
+                    <label for="graduation">Year of Graduation</label>
+                    <input class="form-control" id="graduation" name="graduation" required
+                            <#if mode  == "1" || mode=="2">  value="${employee.graduation}"</#if>
+                            <#if mode != "0" && mode != "1"  >disabled</#if>>
+                </div>
+                <div class="form-group col-6">
+                    <label for="gpa">GPA</label>
+                    <input class="form-control" id="gpa" name="gpa" type="number" required
+                            <#if mode  == "1" || mode=="2">  value="${employee.gpa}"</#if>
+                            <#if mode != "0" && mode != "1"  >disabled</#if>>
+                </div>
             </div>
-            <div class="form-group col-6">
-                <label for="graduation">Year of Graduation</label>
-                <input class="form-control" id="graduation" name="graduation" required
-                        <#if mode  == "1" || mode=="2">  value="${employee.graduation}"</#if>
-                        <#if mode != "0" && mode != "1"  >disabled</#if>>
+            <div id="other-tab-info" class="col-12 hidden">
+                <div class="form-group col-6">
+                    <label for="vehicleName">Vehicles Name</label>
+                    <input class="form-control" id="vehicleName" name="vehicleName" required
+                            <#if mode  == "1" || mode=="2">  value="${employee.vehicleName}"</#if>
+                            <#if mode != "0" && mode != "1"  >disabled</#if>>
+                </div>
+                <div class="form-group col-6">
+                    <label for="vehicleNo">Vehicle No</label>
+                    <input class="form-control" id="vehicleNo" name="vehicleNo" required
+                            <#if mode  == "1" || mode=="2">  value="${employee.vehicleNo}"</#if>
+                            <#if mode != "0" && mode != "1"  >disabled</#if>>
+                </div>
             </div>
-            <div class="form-group col-6">
-                <label for="gpa">GPA</label>
-                <input class="form-control" id="gpa" name="gpa" type="number" required
-                        <#if mode  == "1" || mode=="2">  value="${employee.gpa}"</#if>
-                        <#if mode != "0" && mode != "1"  >disabled</#if>>
-            </div>
-        </div>
-        <div id="other-tab-info" class="col-12 hidden">
-            <div class="form-group col-6">
-                <label for="vehicleName">Vehicles Name</label>
-                <input class="form-control" id="vehicleName" name="vehicleName" required
-                        <#if mode  == "1" || mode=="2">  value="${employee.vehicleName}"</#if>
-                        <#if mode != "0" && mode != "1"  >disabled</#if>>
-            </div>
-            <div class="form-group col-6">
-                <label for="vehicleNo">Vehicle No</label>
-                <input class="form-control" id="vehicleNo" name="vehicleNo" required
-                        <#if mode  == "1" || mode=="2">  value="${employee.vehicleNo}"</#if>
-                        <#if mode != "0" && mode != "1"  >disabled</#if>>
-            </div>
-        </div>
 
     </form>
 </@standerPage.Layout>

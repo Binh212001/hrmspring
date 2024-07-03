@@ -12,7 +12,9 @@
         <div class="form-group col-6">
             <label for="employeeId">Employee</label>
             <select class="form-control" id="employeeId" name="employeeId">
-                <option value="1">Binh</option>
+                <#list employees as employee>
+                    <option value="${employee.employeeId}">${employee.fullName}</option>
+                </#list>
             </select>
         </div>
         <div class="form-group col-6">

@@ -8,10 +8,13 @@
     </div>
     <input id="mode" value="${mode}" hidden />
     <form id="leaveForm" class="row">
+        <input id="leaveId" name="leaveId" class="hidden" value="<#if mode == "1">${leave.leaveId}</#if>"  />
         <div class="form-group col-6">
             <label for="employeeId">Employee</label>
             <select class="form-control" id="employeeId" name="employeeId">
-                <option value="1">Binh</option>
+                <#list employees as employee>
+                    <option value="${employee.employeeId}">${employee.fullName}</option>
+                </#list>
             </select>
         </div>
         <div class="form-group col-6">

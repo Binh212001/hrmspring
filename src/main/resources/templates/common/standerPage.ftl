@@ -13,6 +13,7 @@
         <script src="/js/employee.js"></script>
         <script src="/js/overtime.js"></script>
         <script src="/js/leave.js"></script>
+        <script src="/js/attendance.js"></script>
         <script src="/js/bootstrap.bundle.js "></script>
         <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/css/index.css">
@@ -47,7 +48,7 @@
                         <li class="nav-item">
                         <span id="shift-menu"
                               class="d-flex justify-content-between align-items-center nav-link shadow-sm"
-                              href="/work-shift">
+                              >
                             <div>
                             <i class="fa-solid fa-calendar-days"></i>
                             <p name="txt-link" class="show">
@@ -58,10 +59,10 @@
                         </span>
                             <ul id="shift-item" class="list-style-none p-0 hidden">
                                 <li class="shadow-sm px-4 py-2">
-                                    <a href="/leave">My working shift</a>
+                                    <a href="/work-shift/employee">My working shift</a>
                                 </li>
                                 <li class="shadow-sm px-4 py-2">
-                                    <a href="/leave">All working shift</a>
+                                    <a href="/work-shift">All working shift</a>
                                 </li>
                             </ul>
                         </li>
