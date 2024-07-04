@@ -10,4 +10,6 @@ public interface ShiftService {
     Response save(AttendanceForm form);
 
     Response edit(List<AttendanceForm> form);
+
+    Response approved(List<Long> ids);
 }

@@ -12,4 +12,6 @@ public  class HRMConstant {
     public static final String LEAVE_LIST = "leave/leave";
     public static final Object NEW_OVERTIME ="/overtime/create-edit?mode=0&id=0";
     public static final String SHIFT_CREATE_EDIT ="shift/createEdit" ;
+    public static final String APPROVED = "APPROVED";
+    public static final String DRAFT = "DRAFT";
 }

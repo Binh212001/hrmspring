@@ -2,10 +2,19 @@
 
 <@standerPage.Layout>
     <h3>My Attendance</h3>
+    <div class="mb-2 ">
+        <button class="btn btn-success hidden" id="btnApproved">Approved</button>
+    </div>
+    <div>
+        <p id="message" class="text-primary bold"></p>
+        <p id="messageFail" class="text-danger bold"></p>
+    </div>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" class="text-center">
+                <input type="checkbox" id="checkAll"/>
+            </th>
             <th scope="col">Title</th>
             <th scope="col">
                 Month
@@ -21,7 +30,9 @@
         <tbody>
         <#list  attendances as attend>
             <tr>
-                <th scope="row">${attend.attendanceId!""}</th>
+                <th scope="row" class="text-center">
+                    <input type="checkbox" name="attendanceId" value="${attend.attendanceId!""}"/>
+                </th>
                 <td>Attendance of ${attend.employee.fullName} on ${attend.month!""}/${attend.year!""} </td>
                 <td>${attend.month!""}</td>
                 <td>${attend.year!""}</td>

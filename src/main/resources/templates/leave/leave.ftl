@@ -6,6 +6,9 @@
     to="/leave/create"
     searchUrl="/leave/search"
     ></@standerPage.headerView>
+    <div>
+        <button class="btn btn-success" id="btnApproved">Approved</button>
+    </div>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>

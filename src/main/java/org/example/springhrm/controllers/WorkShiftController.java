@@ -62,4 +62,10 @@ public class WorkShiftController {
         Response edited = shiftService.edit(form);
         return ResponseEntity.ok(edited);
     }
+
+    @PostMapping("/approved")
+    public ResponseEntity<Response> save(@RequestBody List<Long> ids) {
+        Response approved = shiftService.approved(ids);
+        return ResponseEntity.ok(approved);
+    }
 }
