@@ -1,10 +1,13 @@
 package org.example.springhrm.services;
 
+import org.example.springhrm.entity.Attendance;
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Leave;
+import org.example.springhrm.entity.Status;
 import org.example.springhrm.form.LeaveForm;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.LeaveRepository;
+import org.example.springhrm.utils.HRMConstant;
 import org.example.springhrm.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +56,15 @@ public class LeaveServiceImpl implements LeaveService{
         leave.get().setDate(form.getDate());
         leaveRepository.save(leave.get());
         return new Response("Leave is updated successfully", true);
+    }
+
+    @Override
+    public Response approved(List<Long> ids) {
+        for (Long id : ids){
+            Optional<Leave> leave = leaveRepository.findById(id);
+            leave.get().setStatus(Status.APPROVED);
+            leaveRepository.save(leave.get());
+        }
+        return new Response("Leave Request is approved successfully.", true);
     }
 }

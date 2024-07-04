@@ -30,6 +30,8 @@ public class OvertimeController {
 
     @GetMapping(value = {"/", ""})
     public String home(Model model) {
+        List<Overtime> overtimes = overtimeRepository.findAll();
+        model.addAttribute("overtime", overtimes);
         model.addAttribute("newOvertime", HRMConstant.NEW_OVERTIME);
         return "overtime/overtime";
     }
@@ -60,5 +62,11 @@ public class OvertimeController {
     public ResponseEntity<Response> edit(@RequestBody OvertimeForm form) {
             Response edited = overtimeService.edit(form);
         return ResponseEntity.ok(edited);
+    }
+
+    @PostMapping("/approved")
+    public ResponseEntity<Response> save(@RequestBody List<Long> ids) {
+        Response ot = overtimeService.approved(ids);
+        return ResponseEntity.ok(ot);
     }
 }

@@ -12,8 +12,8 @@
         <div class="form-group col-6">
             <label for="employeeId">Employee</label>
             <select class="form-control" id="employeeId" name="employeeId">
-                <#list employees as employee>
-                    <option value="${employee.employeeId}">${employee.fullName}</option>
+                <#list employee as e>
+                    <option value="${e.employeeId}">${e.fullName}</option>
                 </#list>
             </select>
         </div>

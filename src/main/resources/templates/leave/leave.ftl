@@ -3,16 +3,16 @@
 <@standerPage.Layout>
     <h3>My Leave</h3>
     <@standerPage.headerView
-    to="/leave/create"
+    to="${newLeave}"
     searchUrl="/leave/search"
+    approvedUrl="/leave/approved"
     ></@standerPage.headerView>
-    <div>
-        <button class="btn btn-success" id="btnApproved">Approved</button>
-    </div>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" class="text-center">
+                <input type="checkbox" id="checkAll"/>
+            </th>
             <th scope="col">Title</th>
             <th scope="col">
                 Date
@@ -20,9 +20,7 @@
             <th scope="col">
                 Leave Type
             </th>
-            <th scope="col">
-                Date
-            </th>
+
             <th scope="col">
                 reason
             </th>
@@ -32,14 +30,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Request Time Off of Pham Ngoc Binh</td>
-            <td>6</td>
-            <td>6:00</td>
-            <td>6:30</td>
-            <td>Approved</td>
-        </tr>
+        <#list  leave as l>
+            <tr>
+                <th scope="row" class="text-center">
+                    <input type="checkbox" name="id" value="${l.leaveId!''}"/>
+                </th>
+                <td>Request Time Off of ${l.employee.fullName}</td>
+                <td>${l.date}</td>
+                <td>${l.type}</td>
+                <td>${l.reason}</td>
+                <td> ${l.status!"DRAFT"}</td>
+            </tr>
+        </#list>
         </tbody>
     </table>
     <nav aria-label="Page navigation example">

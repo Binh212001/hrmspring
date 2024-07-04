@@ -48,7 +48,7 @@
                         <li class="nav-item">
                         <span id="shift-menu"
                               class="d-flex justify-content-between align-items-center nav-link shadow-sm"
-                              >
+                        >
                             <div>
                             <i class="fa-solid fa-calendar-days"></i>
                             <p name="txt-link" class="show">
@@ -171,13 +171,23 @@
 <#macro headerView
 to=""
 searchUrl = ""
+approvedUrl=""
 >
     <form action="${searchUrl}" class=" mb-3 d-flex justify-content-between align-center align-items-center ">
-        <a href="${to}" class="btn btn-primary">New</a>
+        <div>
+            <a href="${to}" class="btn btn-primary">New</a>
+            <button class="btn btn-success hidden" id="btnApproved" type="button" approvedUrl="${approvedUrl}">
+                Approved
+            </button>
+        </div>
         <div class="d-flex align-items-center ">
             <input type="text" class="form-control" placeholder="Search">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
         </div>
     </form>
+    <div>
+        <p id="message" class="text-primary bold"></p>
+        <p id="messageFail" class="text-danger bold"></p>
+    </div>
 </#macro>
 

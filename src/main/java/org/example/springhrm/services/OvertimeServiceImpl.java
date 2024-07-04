@@ -1,7 +1,9 @@
 package org.example.springhrm.services;
 
 import org.example.springhrm.entity.Employee;
+import org.example.springhrm.entity.Leave;
 import org.example.springhrm.entity.Overtime;
+import org.example.springhrm.entity.Status;
 import org.example.springhrm.form.OvertimeForm;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.OvertimeRepository;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +64,15 @@ public class OvertimeServiceImpl implements OvertimeService {
         } catch (Exception e) {
             return new Response("Overtime is edited failure.", false);
         }
+    }
+
+    @Override
+    public Response approved(List<Long> ids) {
+        for (Long id : ids){
+            Optional<Overtime> overtime = overtimeRepository.findById(id);
+            overtime.get().setStatus(Status.APPROVED);
+            overtimeRepository.save(overtime.get());
+        }
+        return new Response("Overtime Request is approved successfully.", true);
     }
 }

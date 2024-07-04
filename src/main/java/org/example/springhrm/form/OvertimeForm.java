@@ -8,8 +8,6 @@ import org.example.springhrm.utils.TimeConvert;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
-import java.util.Timer;
 
 /**
  * DTO for {@link org.example.springhrm.entity.Overtime}
@@ -28,10 +26,10 @@ public class OvertimeForm implements Serializable {
         overtime.setDate(date);
         overtime.setReason(reason);
         Time startTimeOt = TimeConvert.StringToTime(startTime);
-        Time endTimeOt =  TimeConvert.StringToTime(endTime);
+        Time endTimeOt = TimeConvert.StringToTime(endTime);
         overtime.setStartTime(startTimeOt);
         overtime.setEndTime(endTimeOt);
-        Float durationRealTime = TimeConvert.computeDuration(startTime,endTime);
+        Float durationRealTime = TimeConvert.computeDuration(startTime, endTime);
         overtime.setDuration(durationRealTime);
         overtime.setEmployee(employee);
         return overtime;

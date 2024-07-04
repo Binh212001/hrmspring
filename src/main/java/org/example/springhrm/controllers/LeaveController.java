@@ -29,7 +29,10 @@ public class LeaveController {
     @Autowired
     LeaveService leaveService;
     @GetMapping(value = {"/" , ""})
-    public String home() {
+    public String home(Model model) {
+        List<Leave> leaveList = leaveRepository.findAll();
+        model.addAttribute("leave", leaveList);
+        model.addAttribute("newLeave", HRMConstant.NEW_LEAVE);
         return "leave/leave";
     }
 
@@ -63,5 +66,11 @@ public class LeaveController {
     public ResponseEntity<Response> edit(@RequestBody LeaveForm form) {
         Response edited = leaveService.edit(form);
         return ResponseEntity.ok(edited);
+    }
+
+    @PostMapping("/approved")
+    public ResponseEntity<Response> save(@RequestBody List<Long> ids) {
+        Response approved = leaveService.approved(ids);
+        return ResponseEntity.ok(approved);
     }
 }

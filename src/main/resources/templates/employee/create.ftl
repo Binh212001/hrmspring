@@ -89,7 +89,7 @@
         <div class="form-group col-6">
             <label for="departmentId">Department</label>
             <select class="form-control" id="departmentId" name="departmentId"
-                    <#if employee.department?? && mode == "1" >value="${employee.department.departmentId!""}"</#if>
+                    <#if employee?? && employee.department?? && mode == "1" >value="${employee.department.departmentId!""}"</#if>
                     <#if mode != "0" && mode != "1"  >disabled</#if>>
                 <#list departments as department>
                     <option value="${department.departmentId!""}">${department.departmentName!""}</option>
@@ -100,10 +100,10 @@
             <div class="form-group col-6">
                 <label for="positionId">Position</label>
                 <select class="form-control" id="positionId" name="positionId"
-                        <#if employee.position?? && mode == "1"  >value="${employee.position.positionId!""}"</#if>
+                        <#if  employee?? && employee.position?? && mode == "1"  >value="${employee.position.positionId!""}"</#if>
                         <#if mode != "0" && mode != "1"  >disabled</#if>>
                     <#list positions as position>
-                        <option value="${position.positionId}">${position.positionName}</option>
+                        <option value="${position.positionId!""}">${position.positionName!""}</option>
                     </#list>
                 </select>
             </div>

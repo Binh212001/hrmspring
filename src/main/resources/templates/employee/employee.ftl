@@ -1,5 +1,9 @@
 <#import "../common/standerPage.ftl" as standerPage>
 <@standerPage.Layout>
+    <@standerPage.headerView
+    to="${newEmployee}"
+    searchUrl="/leave/search"
+    ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>

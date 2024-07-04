@@ -2,13 +2,11 @@
 
 <@standerPage.Layout>
     <h3>My Attendance</h3>
-    <div class="mb-2 ">
-        <button class="btn btn-success hidden" id="btnApproved">Approved</button>
-    </div>
-    <div>
-        <p id="message" class="text-primary bold"></p>
-        <p id="messageFail" class="text-danger bold"></p>
-    </div>
+    <@standerPage.headerView
+    to="/work-shift/create-edit?mode=0&id=0"
+    searchUrl="/work-shift/search"
+    approvedUrl="/work-shift/approved"
+    ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -31,7 +29,7 @@
         <#list  attendances as attend>
             <tr>
                 <th scope="row" class="text-center">
-                    <input type="checkbox" name="attendanceId" value="${attend.attendanceId!""}"/>
+                    <input type="checkbox" name="id" value="${attend.attendanceId!""}"/>
                 </th>
                 <td>Attendance of ${attend.employee.fullName} on ${attend.month!""}/${attend.year!""} </td>
                 <td>${attend.month!""}</td>

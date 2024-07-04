@@ -4,11 +4,14 @@
     <@standerPage.headerView
     to="${newOvertime}"
     searchUrl="/overtime/search"
+    approvedUrl="/overtime/approved"
     ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" class="text-center">
+                <input type="checkbox" id="checkAll"/>
+            </th>
             <th scope="col">Title</th>
             <th scope="col">
                 Date
@@ -18,6 +21,8 @@
             </th>
             <th scope="col">
                 End Time
+            </th><th scope="col">
+             Duration
             </th>
             <th scope="col">
                 Status
@@ -25,14 +30,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Request OT of Pham Ngoc Binh</td>
-            <td>6</td>
-            <td>6:00</td>
-            <td>6:30</td>
-            <td>Approved</td>
-        </tr>
+        <#list  overtime as ot>
+            <tr>
+                <th scope="row " class="text-center">
+                    <input type="checkbox" name="id" value="${ot.overtimeId!''}"/>
+                </th>
+                <td>Request OT of ${ot.employee.fullName}</td>
+                <td>${ot.date}</td>
+                <td>${ot.startTime}</td>
+                <td>${ot.endTime}</td>
+                <td>${ot.duration}</td>
+                <td>${ot.status!"DRAFT"}</td>
+            </tr>
+        </#list>
         </tbody>
     </table>
     <nav aria-label="Page navigation example">

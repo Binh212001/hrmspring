@@ -95,4 +95,66 @@ $(document).ready(function () {
         $("#edu-tab-info").addClass("hidden")
         $("#edu-tab-info").removeClass("show")
     })
+
+
+
+    $("#checkAll").change(function () {
+        const checkedAll = $("#checkAll").prop("checked");
+        if (checkedAll) {
+            $('input[name="id"]').each(function () {
+                $("#btnApproved").addClass("show")
+                $("#btnApproved").removeClass("hidden")
+                $(this).prop("checked", true)
+            });
+        } else {
+            $('input[name="id"]').each(function () {
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+                $(this).prop("checked", false)
+            });
+        }
+    })
+
+    $("#btnApproved").click(function () {
+        let approveData = []
+        let url = $(this).attr("approvedUrl")
+        $('input[name="id"]').each(function () {
+            if ($(this).prop("checked")) {
+                approveData.push($(this).val())
+            }
+        });
+        approved(approveData,url)
+    })
+
+    function approved(approveData,url) {
+        $.ajax({
+            url:url,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(approveData),
+            success: function (response) {
+               alert(response.message)
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+                location.reload()
+            },
+            error: function (xhr, status, error) {
+                $("#messageFail").text("Request approved is fail.");
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+            }
+        });
+    }
+
+    $('input[name="id"]').each(function () {
+        $(this).change(function () {
+            if ($('input[name="id"]:checked').length > 0) {
+                $("#btnApproved").addClass("show")
+                $("#btnApproved").removeClass("hidden")
+            } else {
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+            }
+        })
+    })
 });

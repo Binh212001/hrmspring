@@ -32,7 +32,8 @@ public class EmployeeController {
     DepartmentRepository departmentRepository;
 
     @GetMapping(value = {"/", ""})
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("newEmployee", HRMConstant.NEW_EMP);
         return "employee/employee";
     }
 
