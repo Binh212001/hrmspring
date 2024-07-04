@@ -3,6 +3,8 @@ package org.example.springhrm.services;
 import jakarta.transaction.Transactional;
 import org.example.springhrm.entity.Attendance;
 import org.example.springhrm.entity.Employee;
+import org.example.springhrm.entity.Overtime;
+import org.example.springhrm.entity.Status;
 import org.example.springhrm.form.AttendanceForm;
 import org.example.springhrm.repo.AttendanceRepository;
 import org.example.springhrm.repo.EmployeeRepository;
@@ -64,9 +66,20 @@ public class ShiftServiceImpl implements ShiftService {
     public Response approved(List<Long> ids) {
         for (Long id : ids){
             Optional<Attendance> attendance = attendanceRepository.findById(id);
-            attendance.get().setStatus(HRMConstant.APPROVED);
+            attendance.get().setStatus(Status.APPROVED);
             attendanceRepository.save(attendance.get());
         }
         return new Response("Working Shift is approved successfully.", true);
+    }
+
+    @Transactional
+    @Override
+    public Response refused(List<Long> ids) {
+        for (Long id : ids) {
+            Optional<Attendance> attendance = attendanceRepository.findById(id);
+            attendance.get().setStatus(Status.REFUSED);
+            attendanceRepository.save(attendance.get());
+        }
+        return new Response("Attendance was refused successfully.", true);
     }
 }

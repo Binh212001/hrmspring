@@ -14,7 +14,8 @@ public class Attendance {
     private Long attendanceId;
     private Integer month;
     private Integer year;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     private  Date createdAt;
     @ManyToOne
     @JoinColumn(name = "employeeId")

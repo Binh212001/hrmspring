@@ -65,8 +65,13 @@ public class OvertimeController {
     }
 
     @PostMapping("/approved")
-    public ResponseEntity<Response> save(@RequestBody List<Long> ids) {
+    public ResponseEntity<Response> approve(@RequestBody List<Long> ids) {
         Response ot = overtimeService.approved(ids);
         return ResponseEntity.ok(ot);
+    }
+    @PostMapping("/refused")
+    public ResponseEntity<Response> refuse(@RequestBody List<Long> ids) {
+        Response refused =overtimeService.refused(ids);
+        return ResponseEntity.ok(refused);
     }
 }

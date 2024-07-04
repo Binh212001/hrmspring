@@ -11,4 +11,6 @@ public interface LeaveService {
     Response edit(LeaveForm form);
 
     Response approved(List<Long> ids);
+
+    Response refused(List<Long> ids);
 }

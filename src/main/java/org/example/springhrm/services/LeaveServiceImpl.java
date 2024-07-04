@@ -1,5 +1,6 @@
 package org.example.springhrm.services;
 
+import jakarta.transaction.Transactional;
 import org.example.springhrm.entity.Attendance;
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Leave;
@@ -16,11 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LeaveServiceImpl implements LeaveService{
+public class LeaveServiceImpl implements LeaveService {
     @Autowired
     EmployeeRepository employeeRepository;
     @Autowired
     LeaveRepository leaveRepository;
+
     @Override
     public Response save(LeaveForm form) {
         try {
@@ -42,7 +44,7 @@ public class LeaveServiceImpl implements LeaveService{
 
     @Override
     public Response edit(LeaveForm form) {
-       Optional<Leave> leave = leaveRepository.findById(form.getLeaveId());
+        Optional<Leave> leave = leaveRepository.findById(form.getLeaveId());
         Optional<Employee> employee = employeeRepository.findById(form.getEmployeeId());
         if (employee.isEmpty()) {
             return new Response("Cannot find employee", false);
@@ -58,13 +60,25 @@ public class LeaveServiceImpl implements LeaveService{
         return new Response("Leave is updated successfully", true);
     }
 
+    @Transactional
     @Override
     public Response approved(List<Long> ids) {
-        for (Long id : ids){
+        for (Long id : ids) {
             Optional<Leave> leave = leaveRepository.findById(id);
             leave.get().setStatus(Status.APPROVED);
             leaveRepository.save(leave.get());
         }
         return new Response("Leave Request is approved successfully.", true);
+    }
+
+    @Transactional
+    @Override
+    public Response refused(List<Long> ids) {
+        for (Long id : ids) {
+            Optional<Leave> leave = leaveRepository.findById(id);
+            leave.get().setStatus(Status.REFUSED);
+            leaveRepository.save(leave.get());
+        }
+        return new Response("Leave Request refused successfully.", true);
     }
 }

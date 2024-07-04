@@ -64,8 +64,14 @@ public class WorkShiftController {
     }
 
     @PostMapping("/approved")
-    public ResponseEntity<Response> save(@RequestBody List<Long> ids) {
+    public ResponseEntity<Response> approve(@RequestBody List<Long> ids) {
         Response approved = shiftService.approved(ids);
         return ResponseEntity.ok(approved);
+    }
+
+    @PostMapping("/refused")
+    public ResponseEntity<Response> refuse(@RequestBody List<Long> ids) {
+        Response refused = shiftService.refused(ids);
+        return ResponseEntity.ok(refused);
     }
 }

@@ -6,5 +6,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum Status {
-    DRAFT, APPROVED , REJECTED
+    DRAFT, APPROVED , REFUSED, REJECTED
 }

@@ -3,6 +3,7 @@ package org.example.springhrm.form;
 import lombok.Value;
 import org.example.springhrm.entity.Attendance;
 import org.example.springhrm.entity.Employee;
+import org.example.springhrm.entity.Status;
 import org.example.springhrm.utils.HRMConstant;
 import org.example.springhrm.utils.TimeConvert;
 
@@ -26,7 +27,7 @@ public class AttendanceForm implements Serializable {
         attend.setYear(TimeConvert.getYearFromDate(date));
         attend.setMonth(TimeConvert.getMonthFromDate(date));
         attend.setEmployee(employee);
-        attend.setStatus(HRMConstant.DRAFT);
+        attend.setStatus(Status.DRAFT);
         attend.setCreatedAt(date);
         return attend;
     }

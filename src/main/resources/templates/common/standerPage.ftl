@@ -172,12 +172,16 @@
 to=""
 searchUrl = ""
 approvedUrl=""
+refusedUrl=""
 >
     <form action="${searchUrl}" class=" mb-3 d-flex justify-content-between align-center align-items-center ">
         <div>
             <a href="${to}" class="btn btn-primary">New</a>
             <button class="btn btn-success hidden" id="btnApproved" type="button" approvedUrl="${approvedUrl}">
                 Approved
+            </button>
+            <button class="btn btn-danger hidden" id="btnRefused" type="button" refusedUrl="${refusedUrl}">
+                Refused
             </button>
         </div>
         <div class="d-flex align-items-center ">

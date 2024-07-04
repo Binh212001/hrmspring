@@ -104,12 +104,16 @@ $(document).ready(function () {
             $('input[name="id"]').each(function () {
                 $("#btnApproved").addClass("show")
                 $("#btnApproved").removeClass("hidden")
+                $("#btnRefused").addClass("show")
+                $("#btnRefused").removeClass("hidden")
                 $(this).prop("checked", true)
             });
         } else {
             $('input[name="id"]').each(function () {
                 $("#btnApproved").addClass("hidden")
                 $("#btnApproved").removeClass("show")
+                $("#btnRefused").addClass("hidden")
+                $("#btnRefused").removeClass("show")
                 $(this).prop("checked", false)
             });
         }
@@ -125,6 +129,41 @@ $(document).ready(function () {
         });
         approved(approveData,url)
     })
+
+    $("#btnRefused").click(function () {
+        let refusedData = []
+        let url = $(this).attr("refusedUrl")
+        $('input[name="id"]').each(function () {
+            if ($(this).prop("checked")) {
+                refusedData.push($(this).val())
+            }
+        });
+        refuse(refusedData,url)
+    })
+
+    function refuse(refusedData,url) {
+        $.ajax({
+            url:url,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(refusedData),
+            success: function (response) {
+                alert(response.message)
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+                $("#btnRefused").addClass("hidden")
+                $("#btnRefused").removeClass("show")
+                location.reload()
+            },
+            error: function (xhr, status, error) {
+                $("#messageFail").text("Request approved is fail.");
+                $("#btnApproved").addClass("hidden")
+                $("#btnApproved").removeClass("show")
+                $("#btnRefused").addClass("hidden")
+                $("#btnRefused").removeClass("show")
+            }
+        });
+    }
 
     function approved(approveData,url) {
         $.ajax({
@@ -151,9 +190,13 @@ $(document).ready(function () {
             if ($('input[name="id"]:checked').length > 0) {
                 $("#btnApproved").addClass("show")
                 $("#btnApproved").removeClass("hidden")
+                $("#btnRefused").addClass("show")
+                $("#btnRefused").removeClass("hidden")
             } else {
                 $("#btnApproved").addClass("hidden")
                 $("#btnApproved").removeClass("show")
+                $("#btnRefused").addClass("hidden")
+                $("#btnRefused").removeClass("show")
             }
         })
     })

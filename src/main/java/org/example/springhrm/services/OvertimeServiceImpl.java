@@ -1,5 +1,6 @@
 package org.example.springhrm.services;
 
+import jakarta.transaction.Transactional;
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Leave;
 import org.example.springhrm.entity.Overtime;
@@ -74,5 +75,15 @@ public class OvertimeServiceImpl implements OvertimeService {
             overtimeRepository.save(overtime.get());
         }
         return new Response("Overtime Request is approved successfully.", true);
+    }
+    @Transactional
+    @Override
+    public Response refused(List<Long> ids) {
+        for (Long id : ids) {
+            Optional<Overtime> overtime = overtimeRepository.findById(id);
+            overtime.get().setStatus(Status.REFUSED);
+            overtimeRepository.save(overtime.get());
+        }
+        return new Response("Overtime Request refused successfully.", true);
     }
 }

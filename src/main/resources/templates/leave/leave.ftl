@@ -5,6 +5,7 @@
     <@standerPage.headerView
     to="${newLeave}"
     searchUrl="/leave/search"
+    refusedUrl="/leave/refused"
     approvedUrl="/leave/approved"
     ></@standerPage.headerView>
     <table class="table table-bordered">

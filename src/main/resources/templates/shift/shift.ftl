@@ -6,6 +6,7 @@
     to="/work-shift/create-edit?mode=0&id=0"
     searchUrl="/work-shift/search"
     approvedUrl="/work-shift/approved"
+    refusedUrl="/work-shift/refused"
     ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">

@@ -9,4 +9,6 @@ public interface OvertimeService {
     Response save(OvertimeForm overtimeForm);
     Response edit(OvertimeForm form);
     Response approved(List<Long> ids);
+
+    Response refused(List<Long> ids);
 }

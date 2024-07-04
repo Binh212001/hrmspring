@@ -5,6 +5,7 @@
     to="${newOvertime}"
     searchUrl="/overtime/search"
     approvedUrl="/overtime/approved"
+    refusedUrl="/overtime/refused"
     ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
