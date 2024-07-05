@@ -37,9 +37,9 @@
                     <input type="checkbox" name="id" value="${l.leaveId!''}"/>
                 </th>
                 <td>Request Time Off of ${l.employee.fullName}</td>
-                <td>${l.date}</td>
-                <td>${l.type}</td>
-                <td>${l.reason}</td>
+                <td>${l.date!""}</td>
+                <td>${l.type!""}</td>
+                <td>${l.reason!""}</td>
                 <td> ${l.status!"DRAFT"}</td>
             </tr>
         </#list>

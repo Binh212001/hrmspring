@@ -5,6 +5,7 @@ import org.example.springhrm.entity.Attendance;
 import org.example.springhrm.entity.Employee;
 import org.example.springhrm.form.AttendanceForm;
 import org.example.springhrm.form.LeaveForm;
+import org.example.springhrm.repo.AttendanceItemRepository;
 import org.example.springhrm.repo.AttendanceRepository;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.services.ShiftService;
@@ -28,6 +29,8 @@ public class WorkShiftController {
     EmployeeRepository employeeRepository;
     @Autowired
     ShiftService shiftService;
+    @Autowired
+    AttendanceItemRepository attendanceItemRepository;
 
     @GetMapping(value = {"/", ""})
     public String home(Model model) {
@@ -35,6 +38,13 @@ public class WorkShiftController {
         model.addAttribute("attendances", attendances);
 
         return "shift/shift";
+    }
+
+    @GetMapping(value = {"/shift"})
+    public String detail(Model model ,@RequestParam("id") Long id ) {
+        Optional<Attendance> attendances = attendanceRepository.findById(id);
+        model.addAttribute("attendances", attendances.get());
+        return "shift/shiftDetail";
     }
 
     @GetMapping("/create-edit")
@@ -53,6 +63,7 @@ public class WorkShiftController {
 
     @PostMapping("/save")
     public ResponseEntity<Response> save(@RequestBody AttendanceForm form) {
+
         Response created = shiftService.save(form);
         return ResponseEntity.ok(created);
     }

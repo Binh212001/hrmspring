@@ -1,11 +1,12 @@
 package org.example.springhrm.services;
 
 import jakarta.transaction.Transactional;
+import org.example.springhrm.entity.AttendanceItem;
 import org.example.springhrm.entity.Employee;
-import org.example.springhrm.entity.Leave;
 import org.example.springhrm.entity.Overtime;
 import org.example.springhrm.entity.Status;
 import org.example.springhrm.form.OvertimeForm;
+import org.example.springhrm.repo.AttendanceItemRepository;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.OvertimeRepository;
 import org.example.springhrm.utils.Response;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,8 @@ public class OvertimeServiceImpl implements OvertimeService {
     OvertimeRepository overtimeRepository;
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    AttendanceItemRepository attendanceItemRepository;
 
     @Override
     public Response save(OvertimeForm overtimeForm) {
@@ -55,8 +59,8 @@ public class OvertimeServiceImpl implements OvertimeService {
             overtime.get().setReason(form.getReason());
             overtime.get().setReason(form.getReason());
             Time startTimeOt = TimeConvert.StringToTime(form.getStartTime());
-            Time endTimeOt =  TimeConvert.StringToTime(form.getEndTime());
-            Float durationRealTime = TimeConvert.computeDuration(form.getStartTime(),form.getEndTime());
+            Time endTimeOt = TimeConvert.StringToTime(form.getEndTime());
+            Float durationRealTime = TimeConvert.computeDuration(form.getStartTime(), form.getEndTime());
             overtime.get().setDuration(durationRealTime);
             overtime.get().setStartTime(startTimeOt);
             overtime.get().setEndTime(endTimeOt);
@@ -69,13 +73,19 @@ public class OvertimeServiceImpl implements OvertimeService {
 
     @Override
     public Response approved(List<Long> ids) {
-        for (Long id : ids){
+        for (Long id : ids) {
             Optional<Overtime> overtime = overtimeRepository.findById(id);
+            LocalDate localDate = overtime.get().getDate();
+            AttendanceItem attendanceItem = attendanceItemRepository.findByDateAndEmployeeId(localDate, overtime.get().getEmployee().getEmployeeId());
+            attendanceItem.setOvertimeHours(overtime.get().getDuration());
+            attendanceItem.setWorkingHours(attendanceItem.getWorkingHours() + overtime.get().getDuration());
+            attendanceItemRepository.save(attendanceItem);
             overtime.get().setStatus(Status.APPROVED);
             overtimeRepository.save(overtime.get());
         }
         return new Response("Overtime Request is approved successfully.", true);
     }
+
     @Transactional
     @Override
     public Response refused(List<Long> ids) {

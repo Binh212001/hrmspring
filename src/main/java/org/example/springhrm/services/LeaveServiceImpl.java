@@ -1,11 +1,9 @@
 package org.example.springhrm.services;
 
 import jakarta.transaction.Transactional;
-import org.example.springhrm.entity.Attendance;
-import org.example.springhrm.entity.Employee;
-import org.example.springhrm.entity.Leave;
-import org.example.springhrm.entity.Status;
+import org.example.springhrm.entity.*;
 import org.example.springhrm.form.LeaveForm;
+import org.example.springhrm.repo.AttendanceItemRepository;
 import org.example.springhrm.repo.EmployeeRepository;
 import org.example.springhrm.repo.LeaveRepository;
 import org.example.springhrm.utils.HRMConstant;
@@ -13,6 +11,7 @@ import org.example.springhrm.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +21,8 @@ public class LeaveServiceImpl implements LeaveService {
     EmployeeRepository employeeRepository;
     @Autowired
     LeaveRepository leaveRepository;
+    @Autowired
+    AttendanceItemRepository attendanceItemRepository;
 
     @Override
     public Response save(LeaveForm form) {
@@ -66,6 +67,10 @@ public class LeaveServiceImpl implements LeaveService {
         for (Long id : ids) {
             Optional<Leave> leave = leaveRepository.findById(id);
             leave.get().setStatus(Status.APPROVED);
+            LocalDate localDate = leave.get().getDate();
+            AttendanceItem attendanceItem = attendanceItemRepository.findByDateAndEmployeeId(localDate, leave.get().getEmployee().getEmployeeId());
+            attendanceItem.setWorkingHours(0f);
+            attendanceItemRepository.save(attendanceItem);
             leaveRepository.save(leave.get());
         }
         return new Response("Leave Request is approved successfully.", true);

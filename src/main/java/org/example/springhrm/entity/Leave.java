@@ -3,6 +3,7 @@ package org.example.springhrm.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -11,7 +12,7 @@ public class Leave {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long leaveId;
-    private Date date;
+    private LocalDate date;
     private String type; // Example: Annual, Sick, Unpaid, etc.
     private String reason;
     @ManyToOne

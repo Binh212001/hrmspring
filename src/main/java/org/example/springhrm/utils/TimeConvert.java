@@ -1,9 +1,14 @@
 package org.example.springhrm.utils;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class TimeConvert {
@@ -35,6 +40,28 @@ public class TimeConvert {
         ZonedDateTime dateTime = ZonedDateTime.parse(date.toString(), inputFormatter);
         String formattedDate = dateTime.format(outputFormatter);
         return Integer.parseInt(formattedDate.split("/")[2]);
+    }
+
+    public static List<LocalDate> getListDate(LocalDate currentDate) {
+        LocalDate endOfMonth = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
+
+        List<LocalDate> dates = new ArrayList<>();
+
+        LocalDate date = currentDate;
+        while (!date.isAfter(endOfMonth)) {
+            dates.add(date);
+            date = date.plusDays(1);
+        }
+        return dates;
+    }
+    public static LocalTime convertToTime(String timeStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            return LocalTime.parse(timeStr, formatter);
+        } catch (DateTimeParseException e) {
+            System.err.println("Invalid time format: " + timeStr);
+            return null; // or throw an exception or handle it as needed
+        }
     }
 }
 

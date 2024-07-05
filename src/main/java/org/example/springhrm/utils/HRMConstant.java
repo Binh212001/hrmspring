@@ -13,8 +13,14 @@ public  class HRMConstant {
     public static final String NEW_OVERTIME ="/overtime/create-edit?mode=0&id=0";
     public static final String NEW_LEAVE ="/leave/create-edit?mode=0&id=0";
     public static final String NEW_ATTENDANT ="/work-shift/create-edit?mode=0&id=0";
-    public static final String NEW_EMP ="/employee/create-edit?mode=0&id=0";
+    public static final String NEW_EMP ="/employee/create-edit-detail?mode=0&id=0";
     public static final String SHIFT_CREATE_EDIT ="shift/createEdit" ;
-    public static final String APPROVED = "APPROVED";
-    public static final String DRAFT = "DRAFT";
+
+    public static final String MONDAY ="MON" ;
+    public static final String TUESDAY = "TUS";
+    public static final String WEDNESDAY ="WED" ;
+    public static final String THURSDAY = "THU";
+    public static final String FRIDAY = "FIR";
+    public static final String SATURDAY = "SAT";
+    public static final String SUNDAY ="SUN" ;
 }

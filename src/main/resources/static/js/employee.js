@@ -22,4 +22,12 @@ $(document).ready(function () {
             }
         });
     })
+
+    $("#employeeData tr").each(function(){
+        $(this).click(function(){
+            let id = $(this).attr('data-id');
+            let {origin} =  window
+            window.location.href = `${origin}/employee/create-edit-detail?mode=2&id=${id}`
+        });
+    })
 });

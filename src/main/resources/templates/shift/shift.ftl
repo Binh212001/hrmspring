@@ -26,9 +26,9 @@
             </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="attendanceData">
         <#list  attendances as attend>
-            <tr>
+            <tr data-id="${attend.attendanceId}">
                 <th scope="row" class="text-center">
                     <input type="checkbox" name="id" value="${attend.attendanceId!""}"/>
                 </th>

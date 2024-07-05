@@ -14,12 +14,27 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(mode == "0" ? leaveForm : leaveFormUpdate),
             success: function (response) {
-                let origin = window.origin;
-                window.location.href = `${origin}/work-shift`
+                if (response.data) {
+                    alert(response.message)
+                    let origin = window.origin;
+                    window.location.href = `${origin}/work-shift`
+                } else {
+                    alert(response.message)
+                }
             },
             error: function (xhr, status, error) {
                 console.error("Error: " + status);
             }
         });
+    })
+
+    $("#attendanceData tr").each(function () {
+        let id = $(this).attr('data-id');
+        $(this).find("td").each(function () {
+            $(this).click(function () {
+                let {origin} = window
+                window.location.href = `${origin}/work-shift/shift?id=${id}`
+            });
+        })
     })
 })

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -12,7 +13,7 @@ public class Overtime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long overtimeId;
-    private Date date;
+    private LocalDate date;
     private Float duration;
     private String reason;
     private Time startTime;

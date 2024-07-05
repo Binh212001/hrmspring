@@ -33,11 +33,13 @@ public class EmployeeController {
 
     @GetMapping(value = {"/", ""})
     public String home(Model model) {
+        List <Employee> employees = employeeRepository.findAll();
+        model.addAttribute("employees", employees);
         model.addAttribute("newEmployee", HRMConstant.NEW_EMP);
         return "employee/employee";
     }
 
-    @GetMapping("/create-edit")
+    @GetMapping("/create-edit-detail")
     public String create(Model model, @RequestParam("mode") String mode, @RequestParam("id") Long id) {
         List<Position> positions = positionRepository.findAll();
         List<Department> departments = departmentRepository.findAll();

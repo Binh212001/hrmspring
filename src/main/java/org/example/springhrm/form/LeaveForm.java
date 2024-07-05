@@ -5,6 +5,7 @@ import org.example.springhrm.entity.Employee;
 import org.example.springhrm.entity.Leave;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class LeaveForm implements Serializable {
     String type;
     String status;
     String reason;
-    Date date;
+    LocalDate date;
     public Leave mapToEty(Employee employee) {
         Leave leave = new Leave();
         leave.setEmployee(employee);

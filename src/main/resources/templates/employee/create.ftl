@@ -14,8 +14,6 @@
         <div class="col-12">
             <#if mode == "0" || mode=="1">
                 <button type="button" id="saveEmployee" class="btn btn-primary">Save</button>
-            <#else>
-                <button type="button" id="editEmployee" class="btn btn-primary">Edit</button>
             </#if>
         </div>
         <#if mode == "2">

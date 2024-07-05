@@ -8,9 +8,8 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First Name</th>
             <th scope="col">
-                <span>Last Name</span>
+                <span>Full Name</span>
                 <i id="icon-search" class="fa-solid fa-magnifying-glass float-right mt-1">
                 </i>
                 <div id="employee-search" class="hidden">
@@ -38,20 +37,30 @@
             <th scope="col">Position</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>John</td>
-            <td>Doe</td>
-            <td>1990-01-01</td>
-            <td>Male</td>
-            <td>john.doe@example.com</td>
-            <td>0987272867</td>
-            <td>123 Main St</td>
-            <td>2020-06-01</td>
-            <td>IT</td>
-            <td>Developer</td>
-        </tr>
+        <tbody id="employeeData">
+        <#list employees as e>
+            <tr data-id="${e.employeeId}">
+                <th scope="row" >${e.employeeId}
+                </th>
+                <td>${e.fullName}</td>
+                <td>${e.dateOfBirth}</td>
+                <td>${e.gender}</td>
+                <td>${e.email}</td>
+                <td>${e.phone}</td>
+                <td>${e.address}</td>
+                <td>${e.hireDate}</td>
+                <td>
+                    <#if e.department ??>
+                        ${e.department.departmentName}
+                    </#if>
+                </td>
+                <td>
+                    <#if e.position ??>
+                        ${e.position.positionName}
+                    </#if>
+                </td>
+            </tr>
+        </#list>
         </tbody>
     </table>
     <nav aria-label="Page navigation example">

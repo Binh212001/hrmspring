@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface LeaveRepository extends JpaRepository<Leave, Long> {
-    List<Leave> findByDateAndEmployee(Date date, Employee employee);
+    List<Leave> findByDateAndEmployee(LocalDate date, Employee employee);
 }

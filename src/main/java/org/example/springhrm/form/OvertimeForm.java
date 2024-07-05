@@ -7,6 +7,7 @@ import org.example.springhrm.utils.TimeConvert;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
 @Value
 public class OvertimeForm implements Serializable {
     private Long overtimeId;
-    private Date date;
+    private LocalDate date;
     private String reason;
     private String startTime;
     private String endTime;
