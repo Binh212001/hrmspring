@@ -7,6 +7,7 @@
     searchUrl="/work-shift/search"
     approvedUrl="/work-shift/approved"
     refusedUrl="/work-shift/refused"
+    payroll=true
     ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">

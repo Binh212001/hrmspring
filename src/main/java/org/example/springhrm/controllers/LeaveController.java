@@ -37,6 +37,12 @@ public class LeaveController {
     }
 
 
+    @GetMapping(value = {"/myShift" , ""})
+    public String myShift(Model model) {
+        return "leave/leave";
+    }
+
+
     @GetMapping(value = {"/create-edit"})
     public String createOrEdit(@RequestParam("mode") String mode, Model model, @RequestParam("id") Long id) {
         List<Employee> employees =  employeeService.findEmpByLevel();

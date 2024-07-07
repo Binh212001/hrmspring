@@ -106,6 +106,8 @@ $(document).ready(function () {
                 $("#btnApproved").removeClass("hidden")
                 $("#btnRefused").addClass("show")
                 $("#btnRefused").removeClass("hidden")
+                $("#btnPayroll").addClass("show")
+                $("#btnPayroll").removeClass("hidden")
                 $(this).prop("checked", true)
             });
         } else {
@@ -114,6 +116,8 @@ $(document).ready(function () {
                 $("#btnApproved").removeClass("show")
                 $("#btnRefused").addClass("hidden")
                 $("#btnRefused").removeClass("show")
+                $("#btnPayroll").addClass("hidden")
+                $("#btnPayroll").removeClass("show")
                 $(this).prop("checked", false)
             });
         }
@@ -199,5 +203,8 @@ $(document).ready(function () {
                 $("#btnRefused").removeClass("show")
             }
         })
+    })
+
+    $("#btnPayroll").click(function () {
     })
 });

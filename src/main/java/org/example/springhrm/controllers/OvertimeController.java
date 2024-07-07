@@ -45,10 +45,15 @@ public class OvertimeController {
             return HRMConstant.OT_CREATE_EDIT;
         }
         Optional<Overtime> overtime = overtimeRepository.findById(id);
+        model.addAttribute("overtime", overtime.get());
         if (overtime.isEmpty()) {
             return HRMConstant.OT_LIST;
         }
-        model.addAttribute("overtime", overtime.get());
+        if (!overtime.isEmpty() && HRMConstant.MODE_SHOW.equals(mode)) {
+            model.addAttribute("mode", mode);
+            return HRMConstant.OT_CREATE_EDIT;
+        }
+
         return HRMConstant.OT_CREATE_EDIT;
     }
 

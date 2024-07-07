@@ -173,6 +173,8 @@ to=""
 searchUrl = ""
 approvedUrl=""
 refusedUrl=""
+payroll=false
+payrollUrl=""
 >
     <form action="${searchUrl}" class=" mb-3 d-flex justify-content-between align-center align-items-center ">
         <div>
@@ -183,6 +185,11 @@ refusedUrl=""
             <button class="btn btn-danger hidden" id="btnRefused" type="button" refusedUrl="${refusedUrl}">
                 Refused
             </button>
+            <#if payroll>
+                <button class="btn btn-danger hidden" id="btnPayroll" type="button" payrollUrl="${payrollUrl}">
+                    Send Payroll
+                </button>
+            </#if>
         </div>
         <div class="d-flex align-items-center ">
             <input type="text" class="form-control" placeholder="Search">

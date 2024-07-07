@@ -30,9 +30,9 @@
             </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="leaveData">
         <#list  leave as l>
-            <tr>
+            <tr data-id="${l.leaveId}">
                 <th scope="row" class="text-center">
                     <input type="checkbox" name="id" value="${l.leaveId!''}"/>
                 </th>

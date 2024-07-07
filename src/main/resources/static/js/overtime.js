@@ -12,6 +12,7 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(overtimeForm),
             success: function (response) {
+                alert(response.message)
                 let  origin = window.origin;
                 window.location.href = `${origin}/overtime`
             },
@@ -19,5 +20,21 @@ $(document).ready(function () {
                 console.error("Error: " + status );
             }
         });
+    })
+
+    $("#overtimeData tr").each(function () {
+        let id = $(this).attr('data-id');
+        $(this).find("td").each(function () {
+            $(this).click(function () {
+                let {origin} = window
+                window.location.href = `${origin}/overtime/create-edit?mode=2&id=${id}`
+            });
+        })
+    })
+
+    $("#btnShowEditOt").click(function () {
+        let id = $("#overtimeId").val();
+        let {origin} = window
+        window.location.href = `${origin}/overtime/create-edit?mode=1&id=${id}`
     })
 })

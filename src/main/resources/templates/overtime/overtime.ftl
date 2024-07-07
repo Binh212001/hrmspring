@@ -30,9 +30,9 @@
             </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="overtimeData">
         <#list  overtime as ot>
-            <tr>
+            <tr  data-id="${ot.overtimeId}">
                 <th scope="row " class="text-center">
                     <input type="checkbox" name="id" value="${ot.overtimeId!''}"/>
                 </th>

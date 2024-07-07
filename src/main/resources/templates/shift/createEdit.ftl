@@ -11,7 +11,7 @@
         <input id="attendanceId" name="attendanceId" class="hidden" value="<#if mode == "1">${attendance.attendanceId}</#if>"  />
         <div class="form-group col-6">
             <label for="employeeId">Employee</label>
-            <select class="form-control" id="employeeId" name="employeeId">
+            <select class="form-control" id="employeeId" name="employeeId" >
                 <#list employees as employee>
                     <option value="${employee.employeeId}">${employee.fullName}</option>
                 </#list>
