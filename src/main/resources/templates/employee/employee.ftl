@@ -39,24 +39,24 @@
         </thead>
         <tbody id="employeeData">
         <#list employees as e>
-            <tr data-id="${e.employeeId}">
-                <th scope="row" >${e.employeeId}
+            <tr data-id="${e.employeeId!""}">
+                <th scope="row" >${e.employeeId!""}
                 </th>
-                <td>${e.fullName}</td>
-                <td>${e.dateOfBirth}</td>
-                <td>${e.gender}</td>
-                <td>${e.email}</td>
-                <td>${e.phone}</td>
-                <td>${e.address}</td>
-                <td>${e.hireDate}</td>
+                <td>${e.fullName!""}</td>
+                <td>${e.dateOfBirth!""}</td>
+                <td>${e.gender!""}</td>
+                <td>${e.email!""}</td>
+                <td>${e.phone!""}</td>
+                <td>${e.address!""}</td>
+                <td>${e.hireDate!""}</td>
                 <td>
                     <#if e.department ??>
-                        ${e.department.departmentName}
+                        ${e.department.departmentName!""}
                     </#if>
                 </td>
                 <td>
                     <#if e.position ??>
-                        ${e.position.positionName}
+                        ${e.position.positionName!""}
                     </#if>
                 </td>
             </tr>

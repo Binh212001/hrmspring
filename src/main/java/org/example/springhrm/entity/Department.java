@@ -10,7 +10,6 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departmentId;
     private String departmentName;
-
     @OneToOne
     @JoinColumn(name = "managerId")
     private Employee manager;

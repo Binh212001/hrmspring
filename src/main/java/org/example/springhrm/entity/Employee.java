@@ -2,7 +2,8 @@ package org.example.springhrm.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.Date;
+
+import java.util.*;
 
 @Data
 @Entity
@@ -25,7 +26,6 @@ public class Employee {
     private String vehicleNo;
     private double gpa;
     private String graduation;
-
     @ManyToOne
     @JoinColumn(name = "departmentId")
     private Department department;
@@ -40,6 +40,7 @@ public class Employee {
     @PrePersist
     protected  void  create(){
         this.fullName = this.firstName + " " + this.lastName;
+
     }
 }
 

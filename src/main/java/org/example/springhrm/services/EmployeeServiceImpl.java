@@ -26,9 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Response save(EmployeeForm employeeForm) {
-        List<Employee> employee = employeeRepository.findByEmail(employeeForm.getEmail());
+        Employee employee = employeeRepository.findByEmail(employeeForm.getEmail());
         Employee newEmployee = employeeForm.mapToEty();
-        if (!employee.isEmpty()) {
+        if (employee!=null) {
             return new Response("Employee is already exist.", false);
         }
         Optional<Department> department = departmentRepository.findById(employeeForm.getDepartmentId());
