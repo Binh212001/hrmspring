@@ -18,7 +18,8 @@
         <img src="img/bg.svg">
     </div>
     <div class="login-content">
-        <form  id="loginForm" action="/auth/login" method="post">
+        <form  id="loginForm" action="/login" method="post">
+
             <img src="/images/avatar.svg">
             <h2 class="title">Welcome</h2>
             <div class="input-div one">
@@ -26,8 +27,8 @@
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
-                    <h5>Email</h5>
-                    <input type="text" name="email" id="email" class="input">
+                        <label for="username" class="sr-only">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
                 </div>
             </div>
             <div class="input-div pass">
@@ -35,12 +36,12 @@
                     <i class="fas fa-lock"></i>
                 </div>
                 <div class="div">
-                    <h5>Password</h5>
-                    <input type="password" name="password" id="password" class="input">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
             </div>
-            <a href="#">Forgot Password?</a>
-            <input  id="btnLogin" class="btn" type="submit" value="Login">
+            <input name="_csrf" type="hidden" value="${_csrf.token}">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div>
 </div>
