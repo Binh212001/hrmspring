@@ -32,7 +32,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/js/**", "/css/**", "/images/**", "/auth/**").permitAll()
-                        .requestMatchers("/leave/**").hasRole("USER")
+                        .requestMatchers("/leave/**","/product/**","/overtime/**","/work-shift/**","/home/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
