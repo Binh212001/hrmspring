@@ -2,7 +2,7 @@
 <@standerPage.Layout>
     <@standerPage.headerView
     to="${newEmployee}"
-    searchUrl="/leave/search"
+    searchUrl="/employee/search"
     ></@standerPage.headerView>
     <table class="table table-bordered">
         <thead class="thead-dark">
@@ -13,8 +13,8 @@
                 <i id="icon-search" class="fa-solid fa-magnifying-glass float-right mt-1">
                 </i>
                 <div id="employee-search" class="hidden">
-                    <form method="post" action="/employee" class="position-absolute   d-flex">
-                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    <form method="get" action="/employee/search" class="position-absolute   d-flex">
+                        <input type="text" class="form-control" id="keyword" name="keyword" required>
                         <button type="submit" class="bg-white border-0 rounded">
                             <i class="fa-solid fa-magnifying-glass float-right mt-1"></i>
                         </button>

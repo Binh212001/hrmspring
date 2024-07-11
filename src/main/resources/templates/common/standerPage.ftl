@@ -192,7 +192,7 @@ payrollUrl=""
             </#if>
         </div>
         <div class="d-flex align-items-center ">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" name="keyword">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
         </div>
     </form>

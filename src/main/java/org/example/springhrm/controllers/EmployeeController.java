@@ -11,6 +11,9 @@ import org.example.springhrm.services.EmployeeService;
 import org.example.springhrm.utils.HRMConstant;
 import org.example.springhrm.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,20 +34,47 @@ public class EmployeeController {
     @Autowired
     DepartmentRepository departmentRepository;
 
-    @GetMapping(value = {"/", ""})
-    public String home(Model model) {
-        List <Employee> employees = employeeRepository.findAll();
-        model.addAttribute("employees", employees);
+    @GetMapping(value = {"", })
+    public String home(@RequestParam(value = "page", required = false) Integer page,
+                       @RequestParam(value = "limit", required = false) Integer limit,
+                       Model model) {
+        if (page == null){
+            page=0;
+        }
+        if (limit==null){
+            limit=10;
+        }
+        Page<Employee> employees = employeeRepository.findAndPagination(PageRequest.of(page, limit));
+        model.addAttribute("employees", employees.getContent());
         model.addAttribute("newEmployee", HRMConstant.NEW_EMP);
         return "employee/employee";
     }
+
+
+    @GetMapping("/search")
+    public String search(Model model, @RequestParam(value = "page", required = false) Integer page,
+                         @RequestParam(value = "limit", required = false) Integer limit,
+                         @RequestParam("keyword") String keyword) {
+        if (page == null){
+            page=0;
+        }
+        if (limit==null){
+            limit=10;
+        }
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<Employee> employees = employeeRepository.findAndPaginationAndSearch(pageable, keyword);
+        model.addAttribute("employees", employees.getContent());
+        model.addAttribute("newEmployee", HRMConstant.NEW_EMP);
+        return "employee/employee";
+    }
+
 
     @GetMapping("/create-edit-detail")
     public String create(Model model, @RequestParam("mode") String mode, @RequestParam("id") Long id) {
         List<Position> positions = positionRepository.findAll();
         List<Department> departments = departmentRepository.findAll();
-        model.addAttribute("departments" , departments);
-        model.addAttribute("positions" , positions);
+        model.addAttribute("departments", departments);
+        model.addAttribute("positions", positions);
         if (HRMConstant.MODE_CREATE.equals(mode)) {
             model.addAttribute("mode", mode);
             return HRMConstant.EMP_EDIT_UPDATE_SHOW;
