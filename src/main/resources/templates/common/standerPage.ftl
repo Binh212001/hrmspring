@@ -59,7 +59,7 @@
                         </span>
                             <ul id="shift-item" class="list-style-none p-0 hidden">
                                 <li class="shadow-sm px-4 py-2">
-                                    <a href="/work-shift/employee">My working shift</a>
+                                    <a href="/work-shift/my-work-shift">My working shift</a>
                                 </li>
                                 <li class="shadow-sm px-4 py-2">
                                     <a href="/work-shift">All working shift</a>
@@ -102,7 +102,7 @@
                                     <a href="/leave">All leave</a>
                                 </li>
                                 <li class="shadow-sm px-4 py-2">
-                                    <a href="/leave">My leave</a>
+                                    <a href="/leave/my-leave">My leave</a>
                                 </li>
                             </ul>
                         </li>

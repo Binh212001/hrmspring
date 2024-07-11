@@ -13,6 +13,9 @@ import org.example.springhrm.utils.HRMConstant;
 import org.example.springhrm.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +40,15 @@ public class WorkShiftController {
         List<Attendance> attendances = attendanceRepository.findAll();
         model.addAttribute("attendances", attendances);
 
+        return "shift/shift";
+    }
+
+    @GetMapping(value = {"/my-work-shift"})
+    public String myShift(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Employee employee = employeeRepository.findByEmail(email);
+        List<Attendance> attendances = attendanceRepository.findByEmployee(employee);
+        model.addAttribute("attendances", attendances);
         return "shift/shift";
     }
 

@@ -11,4 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     List<Attendance> findByEmployeeAndMonthAndYear(Optional<Employee> employee, Integer month, Integer year);
+
+    List<Attendance> findByEmployee(Employee employee);
 }

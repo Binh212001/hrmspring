@@ -32,7 +32,6 @@
             <input type="number" class="form-control" id="quantity" name="quantity" required
                    value="${product.quantity}">
         </div>
-        <input name="_csrf" type="hidden" value="${_csrf.token}">
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </@standerPage.Layout>

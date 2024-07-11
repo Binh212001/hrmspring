@@ -22,7 +22,5 @@
             <input type="date" class="form-control" id="date" name="date"
                    <#if mode == "1">value="${attendance.createdAt?string('yyyy-MM-dd')}"</#if>/>
         </div>
-        <input name="_csrf" type="hidden" value="${_csrf.token}">
     </form>
-
 </@standerPage.Layout>

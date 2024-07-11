@@ -28,7 +28,8 @@ public class LeaveController {
     EmployeeService employeeService;
     @Autowired
     LeaveService leaveService;
-    @GetMapping(value = {"/" , ""})
+
+    @GetMapping("")
     public String home(Model model) {
         List<Leave> leaveList = leaveRepository.findAll();
         model.addAttribute("leave", leaveList);
@@ -37,15 +38,18 @@ public class LeaveController {
     }
 
 
-    @GetMapping(value = {"/myShift" , ""})
+    @GetMapping(value = {"/my-leave"})
     public String myShift(Model model) {
+        List<Leave> leaveList = leaveRepository.findAll();
+        model.addAttribute("leave", leaveList);
+        model.addAttribute("newLeave", HRMConstant.NEW_LEAVE);
         return "leave/leave";
     }
 
 
     @GetMapping(value = {"/create-edit"})
     public String createOrEdit(@RequestParam("mode") String mode, Model model, @RequestParam("id") Long id) {
-        List<Employee> employees =  employeeService.findEmpByLevel();
+        List<Employee> employees = employeeService.findEmpByLevel();
         model.addAttribute("mode", mode);
         model.addAttribute("employee", employees);
         //mode == 0 create
